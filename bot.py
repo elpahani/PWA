@@ -1,6 +1,6 @@
 import asyncio
 import threading
-from flask import Flask, render_template_string, abort
+from flask import Flask, render_template_string, render_template, abort
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -141,6 +141,10 @@ def user_profile(userid):
         if not user:
             abort(404)
         return render_template_string(html_template, user=user)
+
+@app.route("/flappy")
+def flappy():
+    return render_template("flappy.html")
 
 def run_flask():
     # Flask запускается в отдельном потоке
